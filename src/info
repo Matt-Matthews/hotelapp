@@ -1,0 +1,31 @@
+headings:
+color = #427DDE
+size 45
+buttons:
+colors = #DFE9FA  #92B4EC
+fontSize 17
+height = 45
+width 122
+
+marginTop 50
+
+banner:
+width = 1234,
+height = 553,
+borderRadius = 25px,
+    searchBar:
+    width = 100%
+    height = 142px
+        searchInput:
+        fontSize  = 20
+        width = 533,
+        height = 44,
+        borderRadius = 5px
+        color = white
+welcome container:
+width = 455
+height = 407
+fontSize = 64
+
+
+1440

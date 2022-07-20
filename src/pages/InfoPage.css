@@ -1,0 +1,83 @@
+.page{
+    width: 85%;
+}
+.Row{
+    width: 100%;
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-between;
+}
+.info{
+    width: 40%;
+    color: #293462;
+}
+.info h3{
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 2%;
+}
+.info h4{
+    margin-top: 3%;
+    margin-bottom: 2%;
+    font-size: 16px;
+}
+.info p{
+    margin-top: 2%;
+    font-size: 16px;
+    line-height: 25px;
+}
+.map-container{
+    width: 412px;
+    height: 360px;
+    border: 2px solid #293462;
+    border-radius: 25px;
+}
+.filter.info{
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
+    width: 100%;
+}
+.btn.signup.book{
+    margin-top: 3%;
+    width: 200px;
+}
+.droplist.sec{
+    margin-left: 20px;
+    width: 100px;
+}
+input[type=number]{
+    width: 35px;
+    height: 18px;
+    padding: 2px;
+    border: none;
+    outline: none;
+    margin-left: 15px;
+    color: #F24C4C;
+    border-radius: 5px;
+}
+input::placeholder{
+    color: #F24C4C;
+}
+
+.filter h5{
+    font-size: 20px;
+    font-weight: 500;
+}
+.totPrice{
+    width: 85%;
+    margin-top: 3%;
+    font-size: 20px;
+    font-weight: bold;
+    color: #293462;
+}
+.adult, .children, .meals{
+    display: flex;
+    color: white;
+}
+.meals{
+    margin-right: 10px;
+}
+.bookBtn-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
