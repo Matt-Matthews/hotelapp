@@ -1,0 +1,107 @@
+// eslint-disable-next-line import/no-anonymous-default-export
+export default [
+{ //available
+    imgUrl:'https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
+    hotelName: 'Shamrock Lodge',
+    rating: '3.5',
+    status: 'available',
+    checkinDate: new Date().toJSON().slice(0,10),
+    checkoutDate:   new Date().toJSON().slice(0,10),
+    price: 1120,
+    date: '07/25/2022',
+    locationUrl:'www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14589.764154098692!2d29.465398309967746!3d-23.90943180160151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec6d9d1289c4951%3A0x94a634c92d7b86b7!2sThe%20Shamrock%20Lodge%2C%20Polokwane!5e0!3m2!1sen!2sza!4v1658397845704!5m2!1sen!2sza',
+    description: 'Quis magna fugiat id adipisicing dolor cillum laboris. Eiusmod et cillum ad eiusmod. Consectetur minim consectetur nostrud proident voluptate aliquip cillum amet nostrud. Dolore anim magna sit eu exercitation sit proident aute commodo ut nostrud ullamco occaecat. Ea ut laborum non aliquip in elit officia.',
+    id: 1
+},
+{
+    imgUrl:'https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    hotelName: 'The Cottage',
+    rating: '3.5',
+    status: 'available',
+    checkinDate: new Date().toJSON().slice(0,10),
+    checkoutDate:   new Date().toJSON().slice(0,10),
+    price: 450,
+    date: '07/25/2022',
+    locationUrl:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14589.764154098692!2d29.465398309967746!3d-23.90943180160151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec6d75e72773b3f%3A0x67163af13c6d7bc5!2sThe%20Cottage!5e0!3m2!1sen!2sza!4v1658397973720!5m2!1sen!2sza',
+    description: 'Quis magna fugiat id adipisicing dolor cillum laboris. Eiusmod et cillum ad eiusmod. Consectetur minim consectetur nostrud proident voluptate aliquip cillum amet nostrud. Dolore anim magna sit eu exercitation sit proident aute commodo ut nostrud ullamco occaecat. Ea ut laborum non aliquip in elit officia.',
+    id: 2
+},
+{
+    imgUrl:'https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1421&q=80',
+    hotelName: 'Eskulaap Hotel',
+    rating: '3.5',
+    status: 'available',
+    checkinDate: new Date().toJSON().slice(0,10),
+    checkoutDate:   new Date().toJSON().slice(0,10),
+    price: 600,
+    date: '07/25/2022',
+    locationUrl:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14589.764154098692!2d29.465398309967746!3d-23.90943180160151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec6d9d2bd4442c9%3A0x40c690369e3f4482!2sEskulaap%20Hotel%20%26%20Conference!5e0!3m2!1sen!2sza!4v1658398070424!5m2!1sen!2sza',
+    description: 'Quis magna fugiat id adipisicing dolor cillum laboris. Eiusmod et cillum ad eiusmod. Consectetur minim consectetur nostrud proident voluptate aliquip cillum amet nostrud. Dolore anim magna sit eu exercitation sit proident aute commodo ut nostrud ullamco occaecat. Ea ut laborum non aliquip in elit officia.',
+    id: 3
+},
+{
+    imgUrl: 'https://images.unsplash.com/photo-1574643156929-51fa098b0394?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    hotelName: 'Georeen',
+    rating: '4',
+    status: 'available',
+    checkinDate: new Date().toJSON().slice(0,10),
+    checkoutDate:   new Date().toJSON().slice(0,10),
+    price: 1010,
+    date: '07/25/2022',
+    locationUrl:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14589.764154098692!2d29.465398309967746!3d-23.90943180160151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec6d9db57620ead%3A0x7974737d857c46a5!2sGeoreen%20Guesthouse!5e0!3m2!1sen!2sza!4v1658398149671!5m2!1sen!2sza',
+    description: 'Quis magna fugiat id adipisicing dolor cillum laboris. Eiusmod et cillum ad eiusmod. Consectetur minim consectetur nostrud proident voluptate aliquip cillum amet nostrud. Dolore anim magna sit eu exercitation sit proident aute commodo ut nostrud ullamco occaecat. Ea ut laborum non aliquip in elit officia.',
+    id: 4
+}, ///on sale
+{
+    imgUrl:'https://images.unsplash.com/photo-1444201983204-c43cbd584d93?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    hotelName: 'Kings Castle',
+    rating: '4.5',
+    status: 'onSale',
+    checkinDate: new Date().toJSON().slice(0,10),
+    checkoutDate:   new Date().toJSON().slice(0,10),
+    price: 500,
+    date: '07/25/2022',
+    locationUrl:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14589.764154098692!2d29.465398309967746!3d-23.90943180160151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec6d82b06c3227d%3A0x366d9d75ed2bf5a1!2sKings%20Castle!5e0!3m2!1sen!2sza!4v1658398231619!5m2!1sen!2sza',
+    description: 'Quis magna fugiat id adipisicing dolor cillum laboris. Eiusmod et cillum ad eiusmod. Consectetur minim consectetur nostrud proident voluptate aliquip cillum amet nostrud. Dolore anim magna sit eu exercitation sit proident aute commodo ut nostrud ullamco occaecat. Ea ut laborum non aliquip in elit officia.',
+    id: 5
+},
+{
+    imgUrl:'https://images.unsplash.com/photo-1519449556851-5720b33024e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80',
+    hotelName: 'Limpopo Lodge',
+    rating: '3',
+    status: 'onSale',
+    checkinDate: new Date().toJSON().slice(0,10),
+    checkoutDate:   new Date().toJSON().slice(0,10),
+    price: 450,
+    date: '07/25/2022',
+    locationUrl:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58361.31523117298!2d29.455613611790685!3d-23.904429540681022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec6d97a37966a8b%3A0x47778f00566a1890!2sLimpopo%20Lodge!5e0!3m2!1sen!2sza!4v1658398312522!5m2!1sen!2sza',
+    description: 'Quis magna fugiat id adipisicing dolor cillum laboris. Eiusmod et cillum ad eiusmod. Consectetur minim consectetur nostrud proident voluptate aliquip cillum amet nostrud. Dolore anim magna sit eu exercitation sit proident aute commodo ut nostrud ullamco occaecat. Ea ut laborum non aliquip in elit officia.',
+    id: 6
+},
+{
+    imgUrl:'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    hotelName: 'Thandabantu Lodge',
+    rating: '4',
+    status: 'onSale',
+    checkinDate: new Date().toJSON().slice(0,10),
+    checkoutDate:   new Date().toJSON().slice(0,10),
+    price: 1195,
+    date: '07/25/2022',
+    locationUrl:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116732.44286819633!2d29.406175136790775!3d-23.89356014481532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec729cefe3ae01f%3A0x90d5f22c0a7429ed!2sThandabantu%20Lodge!5e0!3m2!1sen!2sza!4v1658399092390!5m2!1sen!2sza',
+    description: 'Quis magna fugiat id adipisicing dolor cillum laboris. Eiusmod et cillum ad eiusmod. Consectetur minim consectetur nostrud proident voluptate aliquip cillum amet nostrud. Dolore anim magna sit eu exercitation sit proident aute commodo ut nostrud ullamco occaecat. Ea ut laborum non aliquip in elit officia.',
+    id: 7
+},
+{
+    imgUrl:'https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    hotelName: 'Iphofolo',
+    rating: '4',
+    status: 'onSale',
+    checkinDate: new Date().toJSON().slice(0,10),
+    checkoutDate:   new Date().toJSON().slice(0,10),
+    price: 1100,
+    date: '07/25/2022',
+    locationUrl:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1870734.8101672626!2d28.66974785293802!3d-23.683862674213646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec7dabdf27f9561%3A0x78d1aac789658a73!2sIphofolo!5e0!3m2!1sen!2sza!4v1658399173533!5m2!1sen!2sza',
+    description: 'Quis magna fugiat id adipisicing dolor cillum laboris. Eiusmod et cillum ad eiusmod. Consectetur minim consectetur nostrud proident voluptate aliquip cillum amet nostrud. Dolore anim magna sit eu exercitation sit proident aute commodo ut nostrud ullamco occaecat. Ea ut laborum non aliquip in elit officia.',
+    id: 8
+},
+];

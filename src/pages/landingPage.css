@@ -103,6 +103,7 @@
     margin-right: 15px;
     color: white;
     font-weight: bold;
+    
   }
   .price input[type=range]{
     margin: 0 15px 6px ;
@@ -112,15 +113,6 @@
     height: 5px;
     border-radius: 5px;
   } 
-   /*.price input[type=range]::-webkit-slider-thumb{
-    -webkit-appearance: none;
-    height: 15px;
-    width: 15px;
-    border: 2px solid #92B4EC;
-    background-color: white;
-    border-radius: 50%;
-  } */
-  
   .droplist{
     height: 24px;
     width: 142px;
@@ -169,7 +161,6 @@
     border-radius: 25px;
     background-size: cover;
     position: relative;
-    cursor: pointer;
   }
   .bookbtn-container{
     width: 100%;
@@ -186,7 +177,7 @@
     width: 200px;
     background-color: #F24C4C;
     color: #ffff;
-    
+    cursor: pointer;
   }
   .card-info{
     position: absolute;
@@ -197,6 +188,10 @@
     width: 100%;
     height: auto;
     color: #293462;
+  }
+  .rating-stars{
+    position: absolute;
+    right: 0%;
   }
   .star{
     color: #FFE61B;
@@ -209,9 +204,10 @@
   }
   .hotel-heading{
     display: flex;
-    justify-content: space-between;
-    width: 80%;
+    width: 91%;
+    position: relative;
   }
+  
   .prom{
     width: 100%;
     height: 158px;
@@ -330,9 +326,9 @@
     cursor: pointer;
   }
   .noAccount{
-    margin-top: 5%;
+    margin-top: 3%;
     color: #F24C4C;
-    font-size: 14px;
+    font-size: 16px;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -341,7 +337,7 @@
     height: 687px;
   }
   .sizedBox{
-    height: 6%;
+    height: 3%;
   }
   .range-container{
     margin-bottom: 2px;
@@ -355,4 +351,30 @@
     top: 0;
     left: 0%;
     /* color: #427DDE; */
+  }
+  .check{
+    margin-top: 5px;
+    width: 80%;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #000;
+  }
+  .check input{
+    margin-right: 5px;
+  }
+  .check button{
+    background-color: transparent;
+    border: none;
+    margin-left: 5px;
+    font-size: 16px;
+    color: #F24C4C;
+  }
+  .check span{
+    margin-left: 5px;
+  }
+  .noData{
+    text-align: center;
+    font-size: 30px;
   }

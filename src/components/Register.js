@@ -43,6 +43,15 @@ export default function Register() {
                 </div>
                 
             </div>
+            <div className='check'>
+            <input type='checkbox' id='terms' /> 
+            I agree to the <button>Terms</button> <span>and</span>  <button>Conditions</button>.
+            </div>
+       
+            <div className='check'>
+            <input type='checkbox' id='terms' /> 
+            I agree to recieve promotional emails.
+            </div>
             <div className='sizedBox'></div>
             <button className='btn signup' onClick={()=>dispatch(closeRegModal())}>Register</button>
             

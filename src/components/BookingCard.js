@@ -2,12 +2,13 @@ import React from 'react'
 import { FaStar, FaStarHalf } from 'react-icons/fa';
 
 export default function BookingCard() {
-    const imgUrl = "chastity-cortijo-M8iGdeTSOkg-unsplash.jpg";
+    //const imgUrl = "chastity-cortijo-M8iGdeTSOkg-unsplash.jpg";
+    //style={{backgroundImage: `url(./images/${imgUrl}`}}
   return (
     <div className='bookingCard'>
         
         <div className='hotel-card'>
-            <div className='hotel-img' style={{backgroundImage: `url(./images/${imgUrl}`}}>
+            <div className='hotel-img' >
             </div>
             <div className='hotel-info'>
                 <h3>Hotel name</h3>

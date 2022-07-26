@@ -1,33 +1,34 @@
 import React from 'react';
-import { FaStar, FaStarHalf } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-// import 
+import Ratings from './Ratings';
+// import {useDispatch, useSelector} from 'react-redux';
 
-export default function HotelCard() {
-    const imgUrl = "chastity-cortijo-M8iGdeTSOkg-unsplash.jpg";
+export default function HotelCard({data}) {
+    // const imgUrl = "chastity-cortijo-M8iGdeTSOkg-unsplash.jpg";
     const navigate = useNavigate()
+   
+    
 
-    function handleNavigate(){
-        navigate('/infopage')
+    function handleNavigate(id){
+        navigate(`/infopage/${id}`)
     }
+    
   return (
     <div style={{
-        backgroundImage: `url(./images/${imgUrl})`
+        backgroundImage: `url(${data.imgUrl})`
     }} className='hotelCard'>
         <div className='card-info'>
             <div className='bookbtn-container'>
-                <button className='btn' onClick={handleNavigate}>Book now</button>
+                <button className='btn' onClick={()=>handleNavigate(data.id)}>Book now</button>
             </div>
             <div className='hotel-heading'>
-                <h3>Hotel name</h3>
-                <div className='stars'>
-                    <FaStar className='star' />
-                    <FaStar className='star' />
-                    <FaStarHalf className='star' />
+                <h3>{data.hotelName}</h3>
+                <div className='rating-stars'>
+                    <Ratings ratings={data.rating} />
                 </div>
 
             </div>
-            <p>R300</p>
+            <p>R{data.price}</p>
         </div>
     </div>
   )

@@ -24,7 +24,7 @@ export default function Footer() {
             <button className='btn login'
             onClick={()=>{dispatch(openLoginModal()); window.scrollTo(0, 0)}}
             >Login</button>
-            <button className='btn signup' onClick={()=>{dispatch(openRegModal()); window.scrollTo(0, 0)}}>Sign up</button>
+            <button className='btn signup' onClick={()=>{dispatch(openRegModal());}}>Sign up</button>
         </div>
     </div>
   )

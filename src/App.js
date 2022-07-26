@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout />}>
         <Route index element={<LandingPage />} />
-        <Route path='/infopage' element={<InfoPage />} />
+        <Route path='/infopage/:id' element={<InfoPage />} />
         <Route path='/bookings' element={<Bookings />} />
         </Route>
       </Routes>
