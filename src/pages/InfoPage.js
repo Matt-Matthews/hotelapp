@@ -4,42 +4,50 @@ import './InfoPage.css';
 import {useSelector} from 'react-redux';
 import Login from '../components/Login';
 import Register from '../components/Register';
-import { useParams } from 'react-router-dom';
-import data from '../backend/data';
+// import { useParams } from 'react-router-dom';
 import Ratings from '../components/Ratings';
 import Map from '../components/Map';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {openLoginModal} from '../features/modal/modalSlice';
+import {openLoginModal, setLoggedIn} from '../features/modal/modalSlice';
 import {getTotalPrice,getRoomType,getCheckinDate,getCheckoutDate,getNumAdults,getNumChild,getMealsType, calculateTotalPrice} from '../features/booking/bookingSlicer';
 import meals from '../backend/meals';
+import {collection, addDoc} from 'firebase/firestore';
+import {firestore} from '../config/firebase';
 
 export default function InfoPage() {
   const {isLoginOpen,isRegOpen} = useSelector((state) => state.modal);
   const {totalPrice,roomType,numAdults,numChild,checkinDate,checkoutDate,mealsType,maxAdults} = useSelector(state=>state.booking);
-
-  let params = useParams();
-  const hotelData = data.filter(hotel=> hotel.id === parseInt(params.id));
-
+  // const {myData} = useSelector(state=>state.booking);
+  // let params = useParams();
+  let hotelData = JSON.parse(localStorage.getItem('data'));
+console.log(hotelData.price);
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
   var minDate = new Date().toJSON().slice(0,10);
+
+  
   
     React.useEffect(()=>{
-      let price = hotelData[0].price;
+      
+      let price = hotelData.price;
     dispatch(getTotalPrice({price}))
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
  
-
+    const {loggedIn} = useSelector(state=>state.modal);
   // eslint-disable-next-line no-unused-vars
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(loggedIn);
   const [numOfAdults, setNumOfAdults] = React.useState(numAdults);
   const [numOfChild, setNumOfChild] = React.useState(numChild);
   const [numOfDays, setNumOfDays] = React.useState(0);
   const [currentDate, setCurrentDate] = React.useState(checkinDate);
   const [selectedMeal, setSelectedMeal] = React.useState(mealsType);
+
+    React.useEffect(()=>{
+      setIsLoggedIn(loggedIn)
+    },[loggedIn])
 
 
   React.useEffect(()=>{
@@ -65,13 +73,23 @@ export default function InfoPage() {
   },[checkoutDate,checkinDate,dispatch]);
 
 
+  React.useEffect(()=>{
+
+    if(!localStorage.getItem('isLoggedIn')){
+        localStorage.setItem('isLoggedIn','false');
+    }else if(localStorage.getItem('isLoggedIn') === 'true'){
+        let isLoggedIn = true;
+        dispatch(setLoggedIn({isLoggedIn}))
+    }
   
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[])
   
   function handleInput(event){
     if(event.target.name === 'roomtype'){
       let roomType = event.target.value;
       dispatch(getRoomType({roomType}))
-      if(roomType==='Single'&& totalPrice > hotelData[0].price){
+      if(roomType==='Single'&& totalPrice > hotelData.price){
         let price;
         if(numAdults ==="4"){ 
           price = -160;
@@ -130,13 +148,13 @@ export default function InfoPage() {
       let price = 0;
       let mealData = meals.filter(meal => meal.mealType === mealsType);
       if(selectedMeal ==='No meals'){
-        price = mealData[0].price;
+        price = mealData.price;
         setSelectedMeal(mealsType);
       }else if(selectedMeal !=='No meals'){
         
         console.log(selectedMeal);
         let removedMealData = meals.filter(meal => meal.mealType === selectedMeal);
-        price = -removedMealData[0].price + mealData[0].price;
+        price = -removedMealData.price + mealData.price;
         setSelectedMeal(mealsType);
       }
       
@@ -144,34 +162,58 @@ export default function InfoPage() {
     }
     
   }
-
+  
   function handleBooking(){
-    let bookDet = [];
-
-    bookDet.push(hotelData[0],roomType,numAdults,numChild,checkinDate,checkoutDate,mealsType,totalPrice);
+  
+    if(isLoggedIn){
+      if(localStorage.getItem('userId')){
+        const userId = localStorage.getItem('userId');
+      
+      const collectionRef = collection(firestore, 'Bookings')
+      addDoc(collectionRef,{
+        hotelData, 
+        roomType: roomType,
+        numAdults:numAdults,
+        numChild: numChild,
+        checkinDate: checkinDate,
+        checkoutDate:checkoutDate,
+        mealsType: mealsType,
+        totalPrice:totalPrice,
+        userID: userId,
+        status: 'Booked',
+        bookingId: hotelData.id
+      }).then(()=>{
+          
+          alert('Successfully booked')
+      }).catch((e)=>{
+        alert(e.message)
+      })
+  
+      }
+    }
+    
     isLoggedIn? navigate('/bookings'): dispatch(openLoginModal())
-
-    console.log(bookDet);
+    
   }
   
   return (
     <div className='page'>
       {isLoginOpen&&<Login />}
         {isRegOpen&&<Register />}
-      <div className='banner' style={{backgroundImage: `url(${hotelData[0].imgUrl})`}}></div>
+      <div className='banner' style={{backgroundImage: `url(${hotelData.imgUrl})`}}></div>
 
       <div className='Row'>
         <div className='info'>
-          <h3>{hotelData[0].hotelName}</h3>
-          <h4>R{hotelData[0].price}</h4>
+          <h3>{hotelData.hotelName}</h3>
+          <h4>R{hotelData.price}</h4>
           <div>
-            <Ratings ratings={hotelData[0].rating} />
+            <Ratings ratings={hotelData.rating} />
           </div>
-          <p>{hotelData[0].description}</p>
+          <p>{hotelData.description}</p>
         </div>
 
         <div className='map-container'>
-          <Map location={hotelData[0].locationUrl} title={hotelData[0].hotelName} />
+          <Map location={hotelData.locationUrl} title={hotelData.hotelName} />
         </div>
 
       </div>

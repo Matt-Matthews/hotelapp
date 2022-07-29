@@ -11,6 +11,7 @@ export default function HotelCard({data}) {
 
     function handleNavigate(id){
         navigate(`/infopage/${id}`)
+        localStorage.setItem('data',JSON.stringify(data));
     }
     
   return (

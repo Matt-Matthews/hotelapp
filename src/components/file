@@ -1,0 +1,32 @@
+// import {collection, getDocs} from 'firebase/firestore';
+// import {firestore} from '../config/firebase';
+
+// React.useEffect(() => {
+
+//     const collectionRef = collection(firestore, 'Users')
+//     const userID = localStorage.getItem('userId');
+
+//    getDocs(collectionRef).then((snapshot) => {
+//     if(!snapshot.empty){
+
+//       snapshot.docs.forEach((doc) => {
+
+//         if(doc.data().userID === userID){
+//           setUserData(doc.data())
+//           localStorage.setItem('userData', JSON.stringify(doc.data()))
+//           console.log(userData);
+//         }
+        
+//       })
+      
+//     }
+//     else{
+//       alert('No snapshot found');
+//     }
+    
+//    }).catch((error) => {
+//     alert(error.message)
+//    })
+   
+//   // eslint-disable-next-line react-hooks/exhaustive-deps
+//    },[])

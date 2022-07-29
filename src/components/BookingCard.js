@@ -1,29 +1,62 @@
-import React from 'react'
-import { FaStar, FaStarHalf } from 'react-icons/fa';
+/* eslint-disable array-callback-return */
+import React from 'react';
+import Ratings from '../components/Ratings';
+import {collection, getDocs,doc,deleteDoc,updateDoc } from 'firebase/firestore';
+import {firestore} from '../config/firebase';
 
-export default function BookingCard() {
-    //const imgUrl = "chastity-cortijo-M8iGdeTSOkg-unsplash.jpg";
-    //style={{backgroundImage: `url(./images/${imgUrl}`}}
+
+export default function BookingCard({data,button,cancelData}) {
+
+  const [docId, setDocId] = React.useState('');
+
+  React.useEffect(()=>{
+    const userId = localStorage.getItem('userId');
+    const collectionRef = collection(firestore, 'Bookings');
+    getDocs(collectionRef).then((snapshot)=>{
+      let id;
+      snapshot.docs.map(doc=>{
+        
+        if(doc.data().bookingId === data.bookingId && doc.data().userID === userId){
+          return id = doc.id;
+        }
+        
+      })
+      setDocId(id)
+    })
+ 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+
+  function handleClick(){
+    let docRef = doc(firestore,'Bookings',docId)
+    if(button==='Cancel'){
+      cancelData(data.bookingId )
+      updateDoc(docRef,{status:"Cancelled"})
+    }else if(button === 'Delete'){
+      deleteDoc(docRef);
+    }
+
+  }
+
   return (
     <div className='bookingCard'>
         
         <div className='hotel-card'>
-            <div className='hotel-img' >
+            <div className='hotel-img' style={{backgroundImage: `url(${data.hotelData.imgUrl})`}} >
+            
             </div>
             <div className='hotel-info'>
-                <h3>Hotel name</h3>
-                <h4>R300</h4>
+                <h3>{data.hotelData.hotelName}</h3>
+                <h4>{data.hotelData.price}</h4>
                 <div className='stars'>
-                    <FaStar className='star' />
-                    <FaStar className='star' />
-                    <FaStarHalf className='star' />
+                <Ratings ratings={data.hotelData.rating} />
                 </div>
-                <p>Quis magna fugiat id...</p>
-                <small>status: booked</small>
+                <p>{data.hotelData.description.substr(0,20)}...</p>
+                <small>status: {data.status}</small>
             </div>
             
         </div>
-        <button>Cancel</button>
+        <button onClick={handleClick} >{button}</button>
     </div>
   )
 }

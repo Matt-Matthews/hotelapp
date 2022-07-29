@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { FaSearch, FaArrowDown } from "react-icons/fa";
 import Filter from '../components/Filter';
 import "./landingPage.css";
@@ -7,52 +7,63 @@ import HotelCard from '../components/HotelCard';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import {useSelector, useDispatch} from 'react-redux';
-import myData from '../backend/data';
 import { getHotelsData, getSearchName, setHasData, setIsSearch } from '../features/search/searchSlicer';
+import { setHotelsData } from '../features/booking/bookingSlicer';
+import { setLoggedIn } from '../features/modal/modalSlice';
 
 
 
 export default function LandingPage() {
     const {isLoginOpen,isRegOpen} = useSelector((state) => state.modal);
     const dispatch = useDispatch();
+    
+    
+    const {myData} = useSelector(state=>state.booking);
+    const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-
+    
     React.useEffect(()=>{
+        forceUpdate();
         let data = myData;
         dispatch(getHotelsData({data}))
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[myData])
+
+    React.useEffect(()=>{
+
+        if(!localStorage.getItem('isLoggedIn')){
+            localStorage.setItem('isLoggedIn','false');
+        }else if(localStorage.getItem('isLoggedIn') === 'true'){
+            let isLoggedIn = true;
+            dispatch(setLoggedIn({isLoggedIn}))
+        }
+        dispatch(setHotelsData())
+        if(!localStorage.getItem('initials')){
+            localStorage.setItem('initials','');
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
-    
-    // const [isSearch,setIsSearch] = React.useState(false);
-
-    // // eslint-disable-next-line no-unused-vars, no-unused-vars
     const {hotelsData,priceRange,ratingsRange,startDate,endDate,searchedName,hasHotelData,isSearch} = useSelector(state => state.search);
-
     
-
-
-    //fix the search function
     function searchAHotel(e){
-        
-
-        // console.log('length : '+ length);
         
         if(e.target.value){
         let value = e.target.value;
         let length = value.length;
-            let data = myData.filter(hotel=> hotel.hotelName.toLowerCase().substr(0,length) === value.toLowerCase());
+        let data = myData.filter(hotel=> hotel.hotelName.toLowerCase().substr(0,length) === value.toLowerCase());
+        
             
             
-            if(data.length !== 0){
-                dispatch(getHotelsData({data}))
-                let hasData = true;
-                dispatch(setHasData({hasData}))
-            }else{
-                let hasData = false;
-                dispatch(setHasData({hasData}))
-            }
+        if(data.length !== 0){
+            dispatch(getHotelsData({data}))
+            let hasData = true;
+            dispatch(setHasData({hasData}))
+        }else{
+            let hasData = false;
+            dispatch(setHasData({hasData}))
+        }
             let isInputClicked = true;
-             dispatch(setIsSearch({isInputClicked}))
+            dispatch(setIsSearch({isInputClicked}))
            
         }else{
             let data = myData;
@@ -65,7 +76,7 @@ export default function LandingPage() {
     }
 
     function filterSearch(){
-        // console.log('change made');
+       
     }
 
     React.useEffect(()=>{
@@ -73,7 +84,9 @@ export default function LandingPage() {
     },[priceRange,ratingsRange,startDate,endDate])
     
   return (
-    <div >
+    <>
+    {myData&&<div >
+        
         {isLoginOpen&&<Login />}
         {isRegOpen&&<Register />}
         <div className='banner'>
@@ -134,6 +147,7 @@ export default function LandingPage() {
         
     </div>
         }
-    </div>
+        
+    </div>}</>
   )
 }

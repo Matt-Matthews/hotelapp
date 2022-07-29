@@ -4,56 +4,54 @@ import ratings from '../backend/ratings';
 import { useSelector,useDispatch } from 'react-redux';
 import { getEndDate,getHotelsData,getPriceRange,getRatingsRange,getStartDate, setHasData, setIsSearch } from '../features/search/searchSlicer';
 import price from '../backend/price';
-import myData from '../backend/data';
 
 export default function Filter() {
     const dispatch = useDispatch();
+    // eslint-disable-next-line no-unused-vars
     const {priceRange,ratingsRange,startDate,endDate,searchedName,hotelsData} = useSelector(state=>state.search);
     var minDate = new Date().toJSON().slice(0,10);
-    
-
-    
-    function filter(e){
-        let length = searchedName.length;
-
-        let filterData = searchedName
-        ? myData.filter(hotel=>
-            hotel.hotelName.toLowerCase().substr(0,length) === searchedName.toLowerCase())
-        : myData;
-        let data;
-        if(e.target.name ==='priceRange' ){
-            data = filterData.filter(hotel=>hotel.price <= e.target.value);
-                
-            if(data.length !== 0){
-                dispatch(getHotelsData({data}))
-                let hasData= true;
-                dispatch(setHasData({hasData}))
-            }else{
-                let hasData = false;
-                dispatch(setHasData({hasData}))
-            }
-            let isInputClicked = true;
-            dispatch(setIsSearch({isInputClicked}))
-            
-            
+    const {myData,} = useSelector(state=>state.booking);
+    function setData(data) {
+        if(data.length !== 0){
+            dispatch(getHotelsData({data}))
+            let hasData= true;
+            dispatch(setHasData({hasData}))
+        }else{
+            let hasData = false;
+            dispatch(setHasData({hasData}))
         }
-
-        if(e.target.name === 'ratingsRange'){
-            data = filterData.filter(hotel=>hotel.rating === e.target.value);
-            console.log(data);
-            if(data.length !== 0){
-                dispatch(getHotelsData({data}))
-                let hasData= true;
-                dispatch(setHasData({hasData}))
-            }else{
-                let hasData = false;
-                dispatch(setHasData({hasData}))
-            }
-            let isInputClicked = true;
-            dispatch(setIsSearch({isInputClicked}))
-        }
-        
+        let isInputClicked = true;
+        dispatch(setIsSearch({isInputClicked}))
     }
+    
+   React.useEffect(()=>{
+    let length = searchedName.length;
+    let filterData = searchedName
+            ? myData.filter(hotel=>
+                hotel.hotelName.toLowerCase().substr(0,length) === searchedName.toLowerCase())
+            : myData;
+            let data;
+    if(priceRange !== '--Under--'){
+        data = filterData.filter(hotel=>hotel.price <= priceRange);       
+        setData(data);
+    }
+    if(ratingsRange!=='--Star--'){
+        data = filterData.filter(hotel=>hotel.rating === ratingsRange);       
+        setData(data);
+    }
+    if(priceRange !== '--Under--' && ratingsRange!=='--Star--'){
+        data = filterData.filter(hotel=>hotel.price <= priceRange&&hotel.rating === ratingsRange);       
+        setData(data);
+    }
+    // if(priceRange !== '--Under--' && ratingsRange!=='--Star--'){
+    //     data = filterData.filter(hotel=>hotel.price <= priceRange&&hotel.rating === ratingsRange&&hotel.checkinDate === startDate&&hotel.checkoutDate===endDate);       
+    //     setData(data);
+    // }
+
+
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[priceRange,ratingsRange,startDate,endDate,searchedName,myData])
 
   return (
     <div className='filter'>
@@ -69,7 +67,6 @@ export default function Filter() {
                     onChange={(e)=>{
                         let priceRange = e.target.value;
                         dispatch(getPriceRange({priceRange}));
-                        filter(e)
                         }}  
                     >
                 <option disabled>--Under--</option>
@@ -88,7 +85,6 @@ export default function Filter() {
                 onChange={(e)=>{
                     let ratingsRange = e.target.value;
                     dispatch(getRatingsRange({ratingsRange}));
-                    filter(e);
                 }}
                  name='ratingsRange'>
             <option disabled>--Star--</option>
@@ -110,7 +106,6 @@ export default function Filter() {
                 onChange={(e)=>{
                     let startDate = e.target.value;
                     dispatch(getStartDate({startDate}));
-                    filter(e);
                 }}
                 />
             <FaExchangeAlt className='icon date-icon' />
@@ -121,20 +116,10 @@ export default function Filter() {
             onChange={(e)=>{
                 let endDate = e.target.value;
                 dispatch(getEndDate({endDate}));
-                filter(e);
             }}
             />
         </div>
 
     </div>
   )
-//   <input className='range' 
-// name='priceRange' 
-// value={priceRange} 
-// onChange={(e)=>{
-//     let priceRange = e.target.value;
-//     dispatch(getPriceRange({priceRange}));
-//     filter(e)
-// }}  
-// min='0' max='1200'  type='number' />
 }

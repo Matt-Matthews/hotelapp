@@ -59,10 +59,21 @@
   background-color: transparent;
   color: #F24C4C;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 .btn.signup{
   background-color: #F24C4C;
   color: #ffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.navIcon{
+  font-size: 20px;
 }
 .banner{
   background-image: url('../public/images/ciudad-maderas-MXbM1NrRqtI-unsplash.jpg');
