@@ -19,7 +19,7 @@ export default function Navbar() {
   const {loggedIn} = useSelector(state=>state.modal);
   const dispatch = useDispatch();
   const [isLoggedIn,setIsLoggedIn] = React.useState(loggedIn)
-  let initials = localStorage.getItem('initials');
+
 
   React.useEffect(()=>{
     setIsLoggedIn(loggedIn)
@@ -41,9 +41,7 @@ export default function Navbar() {
             localStorage.setItem('isLoggedIn', 'false');
             dispatch(setLoggedIn({isLoggedIn}))}}><FaSignOutAlt />Logout</button>
           <button className='btn signup' onClick={()=>navigate('/bookings')}><FaHotel />Bookings</button>
-          <div className='profile'>
-            {initials}
-          </div>
+          
         </div>}
         
     </div>
